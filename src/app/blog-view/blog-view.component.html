@@ -1,0 +1,36 @@
+<div class="container jumbotron">
+  <div class="row" *ngIf="currentBlog">
+    <div class="col-md-12">
+      <h2>{{currentBlog.title}}</h2>
+      <p>posted by {{currentBlog.author}}</p>
+      <p *ngIf="currentBlog">
+        tags : <span
+          *ngFor="let tag of currentBlog.tags;let first=first;let last=last">{{tag}}{{last ? '' : ', '}}</span>
+      </p>
+      <hr>
+      <div [innerHtml]="currentBlog.bodyHtml"></div>
+      <hr>
+      <h5>category . {{currentBlog.content}}</h5>
+    </div>
+  </div>
+  <hr>
+
+  <div class="row" *ngIf="currentBlog">
+    <div class="col-md-4">
+      <a class="btn btn-primary btn-space" [routerLink]="['/edit',currentBlog.blogId]">Edit</a>
+
+    </div>
+
+    <div class="col-md-4">
+      <a class="btn btn-danger btn-space" (click)="deleteThisBlog()">Delete</a>
+
+    </div>
+
+    <div class="col-md-4">
+      <a class="btn btn-warning" [routerLink]="['/home']">Go Back</a>
+
+    </div>
+
+  </div>
+
+</div>
